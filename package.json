@@ -1,0 +1,15 @@
+{
+  "name": "my-webpage",
+  "version": "1.0.0",
+  "description": "A simple webpage project.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step not defined'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
