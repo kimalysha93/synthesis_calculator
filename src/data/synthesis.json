@@ -43,7 +43,85 @@
                 }
             }
         },
-
+    "mage":{
+        "mage":{
+            "gabot":{
+                "name":"Gabot",
+                "description":"Deals weak magic Fire damage to all enemies. Requires Bot.",
+                "party-requirement":"Seeker, Mage, or Healer Lineages",
+                "count":{
+                    "seeker":1,
+                    "mage":1,
+                    "healer":1
+                }
+            },
+            "botra":{
+                "name":"Botra",
+                "description":"Deals medium Fire damage to all enemies. Requires Bot.",
+                "party-requirement":"Mage, Masked Dancer, or Summoner Lineages",
+                "count":{
+                    "masked-dancer":1,
+                    "mage":1,
+                    "summoner":1
+                }
+            },
+            "gablizz":{
+                "name":"Gablizz",
+                "description":"Deals weak magic Ice damage to all enemies. Requires Blizz.",
+                "party-requirement":"Seeker, Mage, or Healer Lineages",
+                "count":{
+                    "mage":1,
+                    "seeker":1,
+                    "healer":1
+                }
+            },
+            "blizza":{
+                "name":"Blizza",
+                "description":"Deals medium magic Ice damage to one enemy. Requires Blizz.",
+                "party-requirement":"Mage, Masked Dancer, or Summoner Lineages",
+                "count":{
+                    "masked-dancer":1,
+                    "mage":1,
+                    "summoner":1
+                }
+            },
+            "gakande":{
+                "name":"Gakande",
+                "description":"Deals weak magic Electric damage to all enemies. Requires Kande.",
+                "party-requirement":"Seeker, Mage, or Healer Lineages",
+                "count":{
+                    "seeker":1,
+                    "mage":1,
+                    "healer":1
+                }
+            },
+            "kandera":{
+                "name":"Kandera",
+                "description":"Deals medium magic Electric damage to one enemy. Requires Kande.",
+                "party-requirement":"Mage, Masked Dancer, or Summoner Lineages",
+                "count":{
+                    "masked-dancer":1,
+                    "mage":1,
+                    "summoner":1
+                }
+            },
+            "meteophor":{
+                "name":"Meteophor",
+                "description":"Deals severe magic Fire damage to one enemy.",
+                "party-requirement":"Seeker, Mage, or Healer Lineages AND Mage, Masked Dancer, or Summoner Lineages",
+                "count":{
+                    "mage":1,
+                    "seeker":1,
+                    "healer":1
+                },
+                "count-2":{
+                    "masked-dancer":1,
+                    "mage":1,
+                    "summoner":1
+                }
+            }
+        }
+    },
     "seeker":{
         "seeker":{
             "tetrabreak":{
@@ -75,7 +153,7 @@
                     "brawler":1,
                     "berserker":1
                 }
-               
+            
             },
             "gacyc":{
                 "name":"Gacyc",
@@ -115,6 +193,45 @@
                     "seeker":1,
                     "mage":1,
                     "healer":1
+                }
+            }
+        }
+    },
+    "warrior":{
+        "warrior":{
+            "round-slash":{
+                "name":"Round Slash",
+                "description":"Deals weak physical Slash damage to all enemies.",
+                "party-requirement":"Knight, Healer, or Commander Lineages",
+                "count":{
+                    "knight":1,
+                    "healer":1,
+                    "commander":1
+                }                    
+            },
+            "bamboo-splitter":{
+                "name":"Bamboo Splitter",
+                "description":"Deals heavy physical Slash damage to one enemy. Adds one Turn Icon on a killing blow.",
+                "party-requirement":"Warrior, Brawler, or Berserker Lineages",
+                "count":{
+                    "warrior":1,
+                    "brawler":1,
+                    "berserker":1
+                }
+            },
+            "peerless-stonecleaver":{
+                "name":"Peerless Stonecleaver",
+                "description":"Deals severe physical Slash damage to one enemy. Adds one Turn Icon on a killing blow.",
+                "party-requirement":"Warrior, Thief, or Masked Dancer Lineages AND Warrior, Brawler, or Berserker Lineages",
+                "count":{
+                    "warrior":1,
+                    "merchant":1,
+                    "summoner":1
+                },
+                "count-2":{
+                    "warrior":1,
+                    "brawler":1,
+                    "berserker":1
                 }
             }
         }

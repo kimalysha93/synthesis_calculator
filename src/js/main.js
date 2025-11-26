@@ -24,6 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
 				{ value: 'paladin', label: 'Paladin' },
 				{ value: 'dark-knight', label: 'Dark Knight' },
 				{ value: 'royal-knight', label: 'Royal Knight' }
+			],
+			'mage':[
+				{ value: 'wizard', label: 'Wizard' },
+				{ value: 'elemental-master', label: 'Elemental Master' },
+				{ value: 'warlock', label: 'Warlock' },
+			],
+			'warrior': [
+				{ value: 'swordmaster', label: 'Swordmaster' },
+				{ value: 'samurai', label: 'Samurai' },
+				{ value: 'royal-warrior', label: 'Royal Warrior' },
 			]
 			// add more mappings as needed
 		};
@@ -81,52 +91,114 @@ document.addEventListener('DOMContentLoaded', () => {
 			//if (lineageSelectC) lineageCount[lineageSelectC.value] += 1;
 			//if (lineageSelectD) lineageCount[lineageSelectD.value] += 1;
 			
+			console.log('Lineage Count Before:', lineageCount);
 			var synthesisA = [];
 
 			if (lineageSelectA.value && archetypeSelectA.value == '') {
-				const instance = new calculateSynthesis(lineageSelectA.value, lineageSelectA.value, lineageCount);
-				synthesisA = instance.calculateSynthesis();
+				const instanceA = new calculateSynthesis(lineageSelectA.value, lineageSelectA.value, lineageCount);
+				synthesisA = instanceA.calculateSynthesis();
 			} else if (lineageSelectA.value && archetypeSelectA.value) {
-				const instance = new calculateSynthesis(lineageSelectA.value, archetypeSelectA.value, lineageCount);
-				synthesisA = instance.calculateSynthesis();
+				const instanceA = new calculateSynthesis(lineageSelectA.value, archetypeSelectA.value, lineageCount);
+				synthesisA = instanceA.calculateSynthesis();
 			}
-			console.log('Synthesis A Skills:', synthesisA);
-			
 
+			var synthesisB = [];
+
+			if (lineageSelectB && lineageSelectB.value && archetypeSelectB && archetypeSelectB.value == '') {
+				const instanceB = new calculateSynthesis(lineageSelectB.value, lineageSelectB.value, lineageCount);
+				synthesisB = instanceB.calculateSynthesis();
+			} else if (lineageSelectB && lineageSelectB.value && archetypeSelectB && archetypeSelectB.value) {
+				const instanceB = new calculateSynthesis(lineageSelectB.value, archetypeSelectB.value, lineageCount);
+				synthesisB = instanceB.calculateSynthesis();
+			}
+
+			console.log('Lineage Count After:', lineageCount);
+			//console.log('Synthesis A Skills:', synthesisA);
+			
 			//console.log('Lineage counts:', lineageCount);
 			
-			// Compute results locally
 			const results = selections.map((sel, idx) => {
-				// Placeholder calculation: you can replace this with your real math
-				// For now, just echo the selection and compute a simple score
-				const score = (sel.lineage ? sel.lineage.length : 0) + (sel.archetype ? sel.archetype.length : 0);
 				return {
 					lineage: sel.lineage,
 					archetype: sel.archetype,
-					score: score
+					skills: (idx === 0) ? synthesisA : (idx === 1 ? synthesisB : [])
 				};
 			});
 
 			renderResults({ results });
+
+/*
+			const resultsB = selections.map((sel, idx) => {
+				//const score = (sel.lineage ? sel.lineage.length : 0) + (sel.archetype ? sel.archetype.length : 0);
+				return {
+					lineage: sel.lineage,
+					archetype: sel.archetype,
+					skills: (idx === 0) ? synthesisB : []
+				};
+			});
+
+			renderResults({ resultsB });*/
 		}
 
 		function renderResults(data) {
 			if (!resultsContent) return;
-			if (!data || !data.results || data.results.length === 0) {
+			if (!data || !data.results) {
 				resultsContent.textContent = 'No results yet. Select lineage and archetype to see results.';
 				return;
 			}
 
-			// Build simple HTML for results
+			// Ensure we render Selection A then Selection B in that order
+			const letters = ['A', 'B'];
+
 			const list = document.createElement('div');
 			list.className = 'results-list';
 
-			data.results.forEach((r, idx) => {
-				const item = document.createElement('div');
-				item.className = 'result-item';
-				item.innerHTML = `<strong>Selection ${idx + 1}:</strong> Lineage = ${escapeHtml(r.lineage)}, Archetype = ${escapeHtml(r.archetype)}, Score = ${r.score}`;
-				list.appendChild(item);
-			});
+			for (let i = 0; i < letters.length; i++) {
+				const r = data.results[i] || { lineage: '', archetype: '', skills: [] };
+
+				const sectionDiv = document.createElement('div');
+				sectionDiv.className = 'result-section';
+
+				// Header: Selection letter, Lineage and Archetype
+				const header = document.createElement('div');
+				header.className = 'result-header';
+				if (r.lineage) {
+					const lineageText = formatLineage(r.lineage);
+					const archeText = r.archetype ? formatArchetype(r.archetype) : '';
+					header.innerHTML = `<strong> ${escapeHtml(lineageText).toUpperCase()}</strong> ${escapeHtml(archeText)}`;
+				} else {
+					header.innerHTML = `No selection`;
+				}
+				sectionDiv.appendChild(header);
+
+				// Skills list (only include name, description, party-requirement)
+				if (r.skills && r.skills.length > 0) {
+					const skillsList = document.createElement('ul');
+					skillsList.className = 'skills-list';
+
+					r.skills.forEach(skill => {
+						const skillItem = document.createElement('li');
+						skillItem.className = 'skill-item';
+						const name = escapeHtml(skill.name || '');
+						const desc = escapeHtml(skill.description || '');
+						const req = escapeHtml(skill['party-requirement'] || '');
+						skillItem.innerHTML = `
+							<div class="skill-name">${name}</div>
+							<div class="skill-description">${desc}</div>
+							<div class="skill-requirement">${req}</div>
+						`;
+						skillsList.appendChild(skillItem);
+					});
+
+					sectionDiv.appendChild(skillsList);
+				} else {
+					const noSkills = document.createElement('p');
+					noSkills.textContent = 'No synthesis skills available.';
+					sectionDiv.appendChild(noSkills);
+				}
+
+				list.appendChild(sectionDiv);
+			}
 
 			// replace content
 			resultsContent.innerHTML = '';
@@ -136,6 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		function escapeHtml(s) {
 			if (!s) return '';
 			return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+		}
+
+		function formatLineage(value) {
+			if (!value) return '';
+			// Capitalize first letter: seeker -> Seeker
+			return value.charAt(0).toUpperCase() + value.slice(1);
+		}
+
+		function formatArchetype(value) {
+			if (!value) return '';
+			// Remove dashes and capitalize each word: magic-knight -> Magic Knight
+			return value.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 		}
 
 		// Initialize selects if present

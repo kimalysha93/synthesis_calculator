@@ -16,11 +16,13 @@ export class calculateSynthesis {
     }
 
     calculateSynthesis(){
-        this.lineageCount[this.lineage] -= 1;
-        console.log('Adjusted lineage counts:', this.lineageCount);
+        // need to clone or else we modify the original counts
+        const localLineageCount = structuredClone(this.lineageCount);
+        localLineageCount[this.lineage] -= 1;
+        //console.log('Adjusted lineage counts:', this.lineageCount);
 
         // dictionary of all skills in archetype
-        console.log('Loaded synthesis data:', skills);
+        //console.log('Loaded synthesis data:', skills);
         const possibleSkills = skills[this.lineage][this.archetype];
         //console.log('Possible skills for', this.lineage, this.archetype, possibleSkills);
 
@@ -30,14 +32,14 @@ export class calculateSynthesis {
             const skill = possibleSkills[skillKey];
             const requirements = skill['count'];
             for (const reqLineage in requirements) {
-                if (this.lineageCount[reqLineage] >= requirements[reqLineage]) {
-                    console.log(`Skill ${skillKey} can be synthesized.`);
+                if (localLineageCount[reqLineage] >= requirements[reqLineage]) {
+                    // console.log(`Skill ${skillKey} can be synthesized.`);
                     synthesizedSkills.push(skills[this.lineage][this.archetype][skillKey]);
                 }
             }
         }
 
-        console.log('Synthesized Skills:', synthesizedSkills);
+        //console.log('Synthesized Skills:', synthesizedSkills);
         return synthesizedSkills;
 
     }

@@ -59,6 +59,62 @@ main {
     box-sizing: border-box;
 }
 
+/* Results styling */
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.result-section {
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px;
+    background: #ffffff;
+}
+
+.result-header {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #000000;
+    color: #1f2937;
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skill-item {
+    padding: 8px;
+    
+}
+
+.skill-name {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.skill-description {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 4px;
+}
+
+.skill-requirement {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-style: italic;
+}
+
+
 /* Responsive: stack columns on narrow screens */
 @media (max-width: 640px) {
     .two-column {
