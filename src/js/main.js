@@ -19,20 +19,60 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Edit this object to match your real lineage -> archetype relationships.
 		const archetypeMap = {
 			// example values; replace with real keys and options
-			'seeker': [
-				{ value: 'magic-seeker', label: 'Magic Seeker' },
-				{ value: 'soul-hacker', label: 'Soul Hacker' }
+			
+			'berserker':[
+				{ value: 'destroyer', label: 'Destroyer' },
+				{ value: 'royal-berserker', label: 'Royal Beserker' },
+			],
+			'brawler':[
+				{ value: 'pugilist', label: 'Pugilist' },
+				{ value: 'martial-artist', label: 'Martial Artist' },
+			],
+			'commander':[
+				{ value: 'general', label: 'General' },
+				{ value: 'warlord', label: 'Warlord' },
+			],
+			'faker':[
+				{ value: 'trickster', label: 'Trickster' },
+			],
+			'gunner':[
+				{ value: 'sniper', label: 'Sniper' },
+				{ value: 'dragoon', label: 'Dragoon' },
+			],
+			'healer':[
+				{ value: 'cleric', label: 'Cleric' },
+				{ value: 'saviour', label: 'Savior' },
 			],
 			'knight': [
 				{ value: 'magic-knight', label: 'Magic Knight' },
 				{ value: 'paladin', label: 'Paladin' },
 				{ value: 'dark-knight', label: 'Dark Knight' },
-				{ value: 'royal-knight', label: 'Royal Knight' }
+				{ value: 'royal-knight', label: 'Royal Knight' },
 			],
 			'mage':[
 				{ value: 'wizard', label: 'Wizard' },
 				{ value: 'elemental-master', label: 'Elemental Master' },
 				{ value: 'warlock', label: 'Warlock' },
+			],
+			'masked-dancer':[
+				{ value: 'persona-master', label: 'Persona Master' },
+				{ value: 'royal-masked-dancer', label: 'Royal Masked Dancer' },
+			],
+			'merchant':[
+				{ value: 'tycoon', label: 'Tycoon' },
+			],
+			'seeker': [
+				{ value: 'magic-seeker', label: 'Magic Seeker' },
+				{ value: 'soul-hacker', label: 'Soul Hacker' }
+			],
+			'summoner':[
+				{ value: 'devil-summoner', label: 'Devil Summoner' },
+				{ value: 'royal-summoner', label: 'Royal Summoner' },
+			],
+			'thief': [
+				{ value: 'assassin', label: 'Assassin' },
+				{ value: 'ninja', label: 'Ninja' },
+				{ value: 'royal-thief', label: 'Royal Thief' },
 			],
 			'warrior': [
 				{ value: 'swordmaster', label: 'Swordmaster' },
@@ -77,14 +117,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 
 		function calculateResults() {
-			// collect selections (supporting optional B selects)
-			
-			const lineageCount = {
-				"seeker":0,
-				"warrior":0,
-				"knight":0,
-				"mage":0
-			}
+		// collect selections (supporting optional B selects)
+		
+		const lineageCount = {
+			"seeker":0,
+			"mage":0,
+			"warrior":0,
+			"knight":0,
+			"thief":0,
+			"berserker":0,
+			"brawler":0,
+			"masked-dancer":0,
+			"commander":0,
+			"gunner":0,
+			"sumonner":0,
+			"healer":0,
+			"merchant":0,
+			"faker":0,
+			"prince":0
+		}
 
 		const selections = [];
 		if (lineageSelectA) selections.push({ lineage: lineageSelectA.value || '', archetype: (archetypeSelectA ? archetypeSelectA.value : '') || '' });
@@ -96,42 +147,43 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (lineageSelectB) lineageCount[lineageSelectB.value] += 1;
 		if (lineageSelectC) lineageCount[lineageSelectC.value] += 1;
 		if (lineageSelectD) lineageCount[lineageSelectD.value] += 1;
-			var synthesisA = [];
 
-			if (lineageSelectA.value && archetypeSelectA.value == '') {
-				const instanceA = new calculateSynthesis(lineageSelectA.value, lineageSelectA.value, lineageCount);
-				synthesisA = instanceA.calculateSynthesis();
-			} else if (lineageSelectA.value && archetypeSelectA.value) {
-				const instanceA = new calculateSynthesis(lineageSelectA.value, archetypeSelectA.value, lineageCount);
-				synthesisA = instanceA.calculateSynthesis();
-			}
+		var synthesisA = [];
+
+		if (lineageSelectA.value && archetypeSelectA.value == '') {
+			const instanceA = new calculateSynthesis(lineageSelectA.value, lineageSelectA.value, lineageCount);
+			synthesisA = instanceA.calculateSynthesis();
+		} else if (lineageSelectA.value && archetypeSelectA.value) {
+			const instanceA = new calculateSynthesis(lineageSelectA.value, archetypeSelectA.value, lineageCount);
+			synthesisA = instanceA.calculateSynthesis();
+		}
 
 		var synthesisB = [];
 
-		if (lineageSelectB && lineageSelectB.value && archetypeSelectB && archetypeSelectB.value == '') {
+		if (lineageSelectB.value && archetypeSelectB.value == '') {
 			const instanceB = new calculateSynthesis(lineageSelectB.value, lineageSelectB.value, lineageCount);
 			synthesisB = instanceB.calculateSynthesis();
-		} else if (lineageSelectB && lineageSelectB.value && archetypeSelectB && archetypeSelectB.value) {
+		} else if (lineageSelectB.value && archetypeSelectB.value) {
 			const instanceB = new calculateSynthesis(lineageSelectB.value, archetypeSelectB.value, lineageCount);
 			synthesisB = instanceB.calculateSynthesis();
 		}
 
 		var synthesisC = [];
 
-		if (lineageSelectC && lineageSelectC.value && archetypeSelectC && archetypeSelectC.value == '') {
+		if (lineageSelectC.value && archetypeSelectC.value == '') {
 			const instanceC = new calculateSynthesis(lineageSelectC.value, lineageSelectC.value, lineageCount);
 			synthesisC = instanceC.calculateSynthesis();
-		} else if (lineageSelectC && lineageSelectC.value && archetypeSelectC && archetypeSelectC.value) {
+		} else if (lineageSelectC.value && archetypeSelectC.value) {
 			const instanceC = new calculateSynthesis(lineageSelectC.value, archetypeSelectC.value, lineageCount);
 			synthesisC = instanceC.calculateSynthesis();
 		}
 
 		var synthesisD = [];
 
-		if (lineageSelectD && lineageSelectD.value && archetypeSelectD && archetypeSelectD.value == '') {
+		if (lineageSelectD.value && archetypeSelectD.value == '') {
 			const instanceD = new calculateSynthesis(lineageSelectD.value, lineageSelectD.value, lineageCount);
 			synthesisD = instanceD.calculateSynthesis();
-		} else if (lineageSelectD && lineageSelectD.value && archetypeSelectD && archetypeSelectD.value) {
+		} else if (lineageSelectD.value && archetypeSelectD.value) {
 			const instanceD = new calculateSynthesis(lineageSelectD.value, archetypeSelectD.value, lineageCount);
 			synthesisD = instanceD.calculateSynthesis();
 		}

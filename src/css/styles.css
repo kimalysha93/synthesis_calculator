@@ -41,6 +41,7 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     align-items: start;
+    padding: 20px 0;
 }
 
 .select-grid label {
