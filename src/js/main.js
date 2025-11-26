@@ -1,3 +1,5 @@
+import { calculateSynthesis } from './calculation.js';
+
 // Dynamic dependent selects for the Select panel
 // - When the `select-lin-a` value changes, `select-arch-a` options are updated.
 // - No form submission is required; this works purely with event listeners.
@@ -69,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				"knight":0,
 				"mage":0
 			}
+
 			const selections = [];
 			if (lineageSelectA) selections.push({ lineage: lineageSelectA.value || '', archetype: (archetypeSelectA ? archetypeSelectA.value : '') || '' });
 			if (lineageSelectB) selections.push({ lineage: lineageSelectB.value || '', archetype: (archetypeSelectB ? archetypeSelectB.value : '') || '' });
@@ -78,9 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
 			//if (lineageSelectC) lineageCount[lineageSelectC.value] += 1;
 			//if (lineageSelectD) lineageCount[lineageSelectD.value] += 1;
 			
+			var synthesisA = [];
+
+			if (lineageSelectA.value && archetypeSelectA.value == '') {
+				const instance = new calculateSynthesis(lineageSelectA.value, lineageSelectA.value, lineageCount);
+				synthesisA = instance.calculateSynthesis();
+			} else if (lineageSelectA.value && archetypeSelectA.value) {
+				const instance = new calculateSynthesis(lineageSelectA.value, archetypeSelectA.value, lineageCount);
+				synthesisA = instance.calculateSynthesis();
+			}
+			console.log('Synthesis A Skills:', synthesisA);
 			
 
-			console.log('Lineage counts:', lineageCount);
+			//console.log('Lineage counts:', lineageCount);
+			
 			// Compute results locally
 			const results = selections.map((sel, idx) => {
 				// Placeholder calculation: you can replace this with your real math
