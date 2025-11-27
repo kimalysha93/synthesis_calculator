@@ -1,5 +1,19 @@
 import { calculateSynthesis } from './calculation.js';
 
+// Get the base path for the application (works on GitHub Pages and locally)
+export const getBasePath = () => {
+	const pathname = window.location.pathname;
+	if (pathname.includes('/metaphor-refantazio-synthesis-calculator/')) {
+		return '/metaphor-refantazio-synthesis-calculator/';
+	}
+	return '/';
+};
+
+const basePath = getBasePath();
+
+// Set CSS variables for asset paths
+document.documentElement.style.setProperty('--base-path', `'${basePath}'`);
+
 // Dynamic dependent selects for the Select panel
 // - When the `select-lin-a` value changes, `select-arch-a` options are updated.
 // - No form submission is required; this works purely with event listeners.

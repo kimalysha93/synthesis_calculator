@@ -1,12 +1,11 @@
+import { getBasePath } from './main.js';
+
 let skills = null;
 
 const loadSkills = async () => {
     if (!skills) {
         try {
-            // Get the base path for the application (works on GitHub Pages and locally)
-            const basePath = window.location.pathname.includes('/metaphor-refantazio-synthesis-calculator/')
-                ? '/metaphor-refantazio-synthesis-calculator/'
-                : '/';
+            const basePath = getBasePath();
             const response = await fetch(basePath + 'data/synthesis.json');
             if (!response.ok) {
                 throw new Error(`Failed to load synthesis.json: ${response.status}`);
