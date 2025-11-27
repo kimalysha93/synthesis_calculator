@@ -432,8 +432,8 @@
             }
         },
         "trickster":{
-            "miracle-cirques":{
-                "name":"Miracle Cirques",
+            "miracle-cirque":{
+                "name":"Miracle Cirque",
                 "description":"Deals extreme physical Almighty damage to all enemies without consuming MP.",
                 "party-requirement":"Knight, Healer, or Commander Lineages AND Thief, Faker, or Merchant Lineages",
                 "count":{

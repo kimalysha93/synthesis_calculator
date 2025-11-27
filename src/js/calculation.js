@@ -31,10 +31,37 @@ export class calculateSynthesis {
         for (const skillKey in possibleSkills) {
             const skill = possibleSkills[skillKey];
             const requirements = skill['count'];
-            for (const reqLineage in requirements) {
-                if (localLineageCount[reqLineage] >= requirements[reqLineage]) {
-                    // console.log(`Skill ${skillKey} can be synthesized.`);
-                    synthesizedSkills.push(skills[this.lineage][this.archetype][skillKey]);
+            if (skill['count-2']) {
+                console.log(`Skill ${skillKey} has alternative requirements.`);
+                console.log("Skills 1:", requirements);
+                console.log("Skills 2:", skill['count-2']);
+                const requirements2 = skill['count-2'];
+                for (const reqLineage in requirements) {
+                    // if first set of requirements met
+                    if (localLineageCount[reqLineage] >= requirements[reqLineage]) {
+                        // remove requirement from cloned local lineage count and scheck second set of requirements
+                        let tempLineageCount = structuredClone(localLineageCount);
+                        tempLineageCount[reqLineage] -= requirements[reqLineage];
+                        let metSecondRequirements = false;
+                        for (const reqLineage2 in requirements2) {
+                            if (tempLineageCount[reqLineage2] >= requirements2[reqLineage2]) {
+                                // console.log(`Skill ${skillKey} can be synthesized.`);
+                                synthesizedSkills.push(skills[this.lineage][this.archetype][skillKey]);
+                                metSecondRequirements = true;
+                                break;
+                            }
+                        }
+                        if (metSecondRequirements) {
+                            break;
+                        }
+                    }
+                }
+            } else {
+                for (const reqLineage in requirements) {
+                    if (localLineageCount[reqLineage] >= requirements[reqLineage]) {
+                        // console.log(`Skill ${skillKey} can be synthesized.`);
+                        synthesizedSkills.push(skills[this.lineage][this.archetype][skillKey]);
+                    }
                 }
             }
         }
