@@ -1,5 +1,19 @@
 import { calculateSynthesis } from './calculation.js';
 
+// Get the base path for the application (works on GitHub Pages and locally)
+export const getBasePath = () => {
+	const pathname = window.location.pathname;
+	if (pathname.includes('/metaphor-refantazio-synthesis-calculator/')) {
+		return '/metaphor-refantazio-synthesis-calculator/';
+	}
+	return '/';
+};
+
+const basePath = getBasePath();
+
+// Set CSS variables for asset paths
+document.documentElement.style.setProperty('--base-path', `'${basePath}'`);
+
 // Dynamic dependent selects for the Select panel
 // - When the `select-lin-a` value changes, `select-arch-a` options are updated.
 // - No form submission is required; this works purely with event listeners.
@@ -112,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 
-		function calculateResults() {
+		async function calculateResults() {
 		
 		const lineageCount = {
 			"seeker":0,
@@ -155,40 +169,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		if (lineageSelectA.value && archetypeSelectA.value == '') {
 			const instanceA = new calculateSynthesis(lineageSelectA.value, lineageSelectA.value, lineageCount, royalCount);
-			synthesisA = instanceA.calculateSynthesis();
+			synthesisA = await instanceA.calculateSynthesis();
 		} else if (lineageSelectA.value && archetypeSelectA.value) {
 			const instanceA = new calculateSynthesis(lineageSelectA.value, archetypeSelectA.value, lineageCount, royalCount);
-			synthesisA = instanceA.calculateSynthesis();
+			synthesisA = await instanceA.calculateSynthesis();
 		}
 
 		var synthesisB = [];
 
 		if (lineageSelectB.value && archetypeSelectB.value == '') {
 			const instanceB = new calculateSynthesis(lineageSelectB.value, lineageSelectB.value, lineageCount, royalCount);
-			synthesisB = instanceB.calculateSynthesis();
+			synthesisB = await instanceB.calculateSynthesis();
 		} else if (lineageSelectB.value && archetypeSelectB.value) {
 			const instanceB = new calculateSynthesis(lineageSelectB.value, archetypeSelectB.value, lineageCount, royalCount);
-			synthesisB = instanceB.calculateSynthesis();
+			synthesisB = await instanceB.calculateSynthesis();
 		}
 
 		var synthesisC = [];
 
 		if (lineageSelectC.value && archetypeSelectC.value == '') {
 			const instanceC = new calculateSynthesis(lineageSelectC.value, lineageSelectC.value, lineageCount, royalCount);
-			synthesisC = instanceC.calculateSynthesis();
+			synthesisC = await instanceC.calculateSynthesis();
 		} else if (lineageSelectC.value && archetypeSelectC.value) {
 			const instanceC = new calculateSynthesis(lineageSelectC.value, archetypeSelectC.value, lineageCount, royalCount);
-			synthesisC = instanceC.calculateSynthesis();
+			synthesisC = await instanceC.calculateSynthesis();
 		}
 
 		var synthesisD = [];
 
 		if (lineageSelectD.value && archetypeSelectD.value == '') {
 			const instanceD = new calculateSynthesis(lineageSelectD.value, lineageSelectD.value, lineageCount, royalCount);
-			synthesisD = instanceD.calculateSynthesis();
+			synthesisD = await instanceD.calculateSynthesis();
 		} else if (lineageSelectD.value && archetypeSelectD.value) {
 			const instanceD = new calculateSynthesis(lineageSelectD.value, archetypeSelectD.value, lineageCount, royalCount);
-			synthesisD = instanceD.calculateSynthesis();
+			synthesisD = await instanceD.calculateSynthesis();
 		}
 			//console.log('Synthesis A Skills:', synthesisA);
 			
@@ -274,8 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		function formatLineage(value) {
 			if (!value) return '';
-			// Capitalize first letter: seeker -> Seeker
-			return value.charAt(0).toUpperCase() + value.slice(1);
+			// Remove dashes and capitalize each word: masked-dancer -> Masked Dancer
+			return value.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 		}
 
 		function formatArchetype(value) {
