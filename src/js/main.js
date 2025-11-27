@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			"masked-dancer":0,
 			"commander":0,
 			"gunner":0,
-			"sumonner":0,
+			"summoner":0,
 			"healer":0,
 			"merchant":0,
 			"faker":0,

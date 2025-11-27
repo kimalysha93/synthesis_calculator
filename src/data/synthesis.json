@@ -67,6 +67,109 @@
             }
         }
     },
+    "commander":{
+        "commander":{
+            "blusterblast-maneuver":{
+                "name":"Blusterblast Maneuver",
+                "description":"Deals extreme magic Fire damage to all enemies. Decreases their Hit/Evasion for 3 turns.",
+                "party-requirement":"Mage, Masked Dancer, or Summoner Lineages",
+                "count":{
+                    "mage":1,
+                    "summoner":1,
+                    "masked-dancer":1
+                }                    
+            },
+            "marakukaja":{
+                "name":"Marakukaja",
+                "description":"Increases all allies' Defence for 3 turns. Requires Rakukaja.",
+                "party-requirement":"Seeker, Knight, or Commander Lineages",
+                "count":{
+                    "seeker":1,
+                    "knight":1,
+                    "commander":1
+                }
+            },
+            "assault-beacon":{
+                "name":"Assault Beacon",
+                "description":"Increases Attack/Defence/Hit/Evasion for all allies for 3 turns.",
+                "party-requirement":"Seeker, Knight, or Commander Lineages",
+                "count":{
+                    "knight":1,
+                    "seeker":1,
+                    "commander":1
+                }
+            },
+            "megido":{
+                "name":"Megido",
+                "description":"Deals medium magic Almighty damage to all enemies.",
+                "party-requirement":"Gunner, Faker, or Summoner Lineages",
+                "count":{
+                    "gunner":1,
+                    "faker":1,
+                    "summoner":1
+                }
+            }
+        }
+    },
+    "faker":{
+        "faker":{
+            "matarunda":{
+                "name":"Matarunda",
+                "description":"Decrease all enemies' Attack for 3 turns. Requires Tarunda.",
+                "party-requirement":"Knight, Healer or Commander Lineages",
+                "count":{
+                    "healer":1,
+                    "knight":1,
+                    "commander":1
+                }
+            },
+            "marakunda":{
+                "name":"Marakunda",
+                "description":"Decrease all enemies' Defence for 3 turns. Requires Rakunda.",
+                "party-requirement":"Knight, Healer, or Commander Lineages",
+                "count":{
+                    "healer":1,
+                    "knight":1,
+                    "commander":1
+                }
+            },
+            "masukunda":{
+                "name":"Masukunda",
+                "description":"Decreases all enemy's Hit/Evasion for 3 turns. Requires Sukunda.",
+                "party-requirement":"Knight, Healer, or Commander Lineages",
+                "count":{
+                    "healer":1,
+                    "knight":1,
+                    "commander":1
+                }
+            },
+            "debilitate":{
+                "name":"Debilitate",
+                "description":"Decrease one enemy's Attack/Defence/Hit/Evasion for 3 turns.",
+                "party-requirement":"Thief, Faker, or Merchant Lineages AND Thief, Faker, or Merchant Lineages",
+                "count":{
+                    "thief":1,
+                    "faker":1,
+                    "merchant":1
+                },
+                "count-2":{
+                    "thief":1,
+                    "faker":1,
+                    "merchant":1
+                }
+            },
+            "free-juggling":{
+                "name":"Free Juggling",
+                "description":"Deals weak physical Almighty damage to all enemies without consuming MP",
+                "party-requirement":"Gunner, Faker, or Summoner Lineages",
+                "count":{
+                    "gunner":1,
+                    "faker":1,
+                    "summoner":1
+                }
+            }
+        }
+    },
     "gunner":{
         "gunner":{
             "wild-barrage":{
@@ -298,6 +401,112 @@
                     "faker":1,
                     "thief":1,
                     "merchant":1
+                }
+            }
+        }
+    },
+    "merchant":{
+        "merchant":{
+            "all-reset":{
+                "name":"All Reset",
+                "description":"Removes nearly all beneficial effects from all enemies.",
+                "party-requirement":"Thief, Faker, or Merchant Lineages",
+                "count":{
+                    "thief":1,
+                    "faker":1,
+                    "merchant":1
+                }                    
+            },
+            "fortune-slots":{
+                "name":"Fortune Slots",
+                "description":"Low Hit Rate, but all hits deal critical physical Almighty damage.",
+                "party-requirement":"Brawler, Merchant, or Summoner Lineages",
+                "count":{
+                    "brawler":1,
+                    "merchant":1,
+                    "summoner":1
+                }
+            }
+        }
+    },
+    "prince":{
+        "prince":{
+            "wild-bore":{
+                "name": "Wild Bore",
+                "description":"Deals extreme physical Pierce damage to one enemy. Significantly decreases their Attack for 3 turns.",
+                "party-requirement":"Gunner, Faker, or Summoner Lineages",
+                "count":{
+                    "gunner":1,
+                    "faker":1,
+                    "summoner":1
+                }                    
+            },
+            "sable-dance":{
+                "name":"Sable Dance",
+                "description":"Inflicts all enemies with a one-time weakness to Dark. Ignores resistances.",
+                "party-requirement":"Warrior, Thief, or Masked Dancer Lineages",
+                "count":{
+                    "thief":1,
+                    "warrior":1,
+                    "masked-dancer":1
+                }
+            },
+            "blackguards-hammer":{
+                "name":"Blackguard's Hammer",
+                "description":"Deals severe physical Dark damage to one enemy. Inflicts a one-time weakness to Dark.",
+                "party-requirement":"Brawler, Merchant, or Summoner Lineages",
+                "count":{
+                    "brawler":1,
+                    "merchant":1,
+                    "summoner":1
+                }
+            },
+            "wind-blade":{
+                "name":"Wind Blade",
+                "description":"Deals extreme Wind damage to all enemies.",
+                "party-requirement":"Seeker, Knight, or Commander Lineages",
+                "count":{
+                    "seeker":1,
+                    "knight":1,
+                    "commander":1
+                }
+            },
+            "hadean-icecrag":{
+                "name":"Hadean Icecrag",
+                "description":"Deals extreme magic Ice damage to all enemies.",
+                "party-requirement":"Seeker, Mage, or Healer Lineages",
+                "count":{
+                    "mage":1,
+                    "seeker":1,
+                    "healer":1
+                }
+            },
+            "royal-sword":{
+                "name":"Royal Sword",
+                "description":"Deals severe Almighty damage to one enemy. Increases damage against human-type monsters.",
+                "party-requirement":"Any",
+                "count":{
+                    "seeker":1,
+                    "mage":1,
+                    "warrior":1,
+                    "knight":1,
+                    "thief":1,
+                    "berserker":1,
+                    "brawler":1,
+                    "masked-dancer":1,
+                    "commander":1,
+                    "gunner":1,
+                    "summoner":1,
+                    "healer":1,
+                    "merchant":1,
+                    "faker":1
+                }
+            },
+            "armaggedons-final-sire":{
+                "name":"Armageddon's Final Sire",
+                "description":"Deals 9,999 damage to all enemies.",
+                "party-requirement":"Full Party as Royal Archetypes",
+                "count":{
                 }
             }
         }
