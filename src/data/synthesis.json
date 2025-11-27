@@ -93,6 +93,48 @@
                     "commander":1
                 }
             }
+        },
+        "royal-berserker":{
+            "rampage-slash":{
+                "name":"Rampage Slash",
+                "description":"Deals extreme physical Slash damage to one enemy. Ignores resistances.",
+                "party-requirement":"Warrior, Brawler, or Berserker Lineages",
+                "count":{
+                    "warrior":1,
+                    "brawler":1,
+                    "berserker":1
+                }
+            },
+            "wanton-destruction":{
+                "name":"Wanton Destruction",
+                "description":"Deals extreme physical Strike damage to one enemy. Inflicts a one-time weakness to Strike.",
+                "party-requirement":"Knight, Healer, or Commander Lineages",
+                "count":{
+                    "knight":1,
+                    "healer":1,
+                    "commander":1
+                }
+            },
+            "battlecry-tackle":{
+                "name":"Battlecry Tackle",
+                "description":"Deals heavy physical Strike damage to all enemies 1-3 times. Ignores resistances.",
+                "party-requirement":"Seeker, Knight, or Commander Lineages",
+                "count":{
+                    "seeker":1,
+                    "knight":1,
+                    "commander":1
+                }
+            },
+            "deadly-eraser":{
+                "name":"Deadly Eraser",
+                "description":"Deals severe physical Almighty damage to one enemy. Removes status, Repel, and strength buff effects on the target.",
+                "party-requirement":"Brawler, Merchant, or Summoner Lineages",
+                "count":{
+                    "merchant":1,
+                    "brawler":1,
+                    "summoner":1
+                }                    
+            }
         }
     },
     "brawler":{
@@ -896,6 +938,18 @@
                     "commander":1
                 }
             }
+        },
+        "royal-knight":{
+            "ultimate-guard":{
+                "name":"Ultimate Guard",
+                "description":"Raises a barrier that nullifies one non-Almighty attack for all allies.",
+                "party-requirement":"Knight, Healer, or Commander Lineages",
+                "count":{
+                    "knight":1,
+                    "healer":1,
+                    "commander":1
+                }
+            }
         }
     },
     "mage":{
@@ -1265,6 +1319,28 @@
                     "faker":1,
                     "thief":1,
                     "merchant":1
+                }
+            }
+        },
+        "royal-masked-dancer":{
+            "danse-macabre":{
+                "name":"Danse Macabre",
+                "description":"High chance of one-hit killing all enemies.",
+                "party-requirement":"Thief, Faker, or Merchant Lineages",
+                "count":{
+                    "faker":1,
+                    "thief":1,
+                    "merchant":1
+                }
+            },
+            "masquerade-change":{
+                "name":"Masquerade Change",
+                "description":"Greatly increases the party's physical attack damage once per battle.",
+                "party-requirement":"Gunner, Masked Dancer, or Berserker Lineages",
+                "count":{
+                    "gunner":1,
+                    "masked-dancer":1,
+                    "berserker":1
                 }
             }
         }
@@ -1696,6 +1772,48 @@
                     "healer":1
                 }
             }
+        },
+        "royal-summoner":{
+            "summon-undead-king":{
+                "name":"Summon Undead King",
+                "description":"Deals severe magic Dark damage to one enemy. May one-hit kill target.",
+                "party-requirement":"Thief, Faker, or Merchant Lineages",
+                "count":{
+                    "thief":1,
+                    "faker":1,
+                    "merchant":1
+                }
+            },
+            "summon-dragon-god":{
+                "name":"Summon Dragon God",
+                "description":"Deals severe magic Fire damage to all enemies and removes buff effects.",
+                "party-requirement":"Mage, Masked Dancer, or Summoner Lineages",
+                "count":{
+                    "mage":1,
+                    "masked-dancer":1,
+                    "summoner":1
+                }
+            },
+            "summon-fury":{
+                "name":"Summon Fury",
+                "description":"Deals extreme magic Strike damage to all enemies. Decreases their Attack/ Defence for 3 turns.",
+                "party-requirement":"Knight, Healer, or Commander Lineages",
+                "count":{
+                    "knight":1,
+                    "healer":1,
+                    "commander":1
+                }
+            },
+            "summon-tyrant":{
+                "name":"Summon Tyrant",
+                "description":"Deals severe magic Almighty damage to all enemies. May inflict Hex.",
+                "party-requirement":"Thief, Faker, or Merchant Lineages",
+                "count":{
+                    "thief":1,
+                    "faker":1,
+                    "merchant":1
+                }                    
+            }
         }
     },
     "thief":{
@@ -1763,6 +1881,38 @@
                     "mage":1,
                     "healer":1
                 }                    
+            }
+        },
+        "royal-thief":{
+            "phantom-tracer":{
+                "name":"Phantom Tracer",
+                "description":"Deals extreme physical Slash damage to one enemy and removes buff effects.",
+                "party-requirement":"Warrior, Thief, or Masked Dancer Lineages",
+                "count":{
+                    "warrior":1,
+                    "thief":1,
+                    "masked-dancer":1
+                }                    
+            },
+            "godkiller":{
+                "name":"Godkiller",
+                "description":"Deals extreme physical Dark damage to one enemy. High chance of one-hit killing target.",
+                "party-requirement":"Gunner, Masked Dancer, or Berserker Lineages",
+                "count":{
+                    "gunner":1,
+                    "berserker":1,
+                    "masked-dancer":1
+                }                    
+            },
+            "bloodrain-twin-ninpo":{
+                "name":"Bloodrain Twin Ninpo",
+                "description":"Deals severe physical Slash damage to one enemy. Removes status, Repel, and strength buff effects on the target.",
+                "party-requirement":"Thief, Faker, or Merchant Lineages",
+                "count":{
+                    "faker":1,
+                    "thief":1,
+                    "merchant":1
+                }
             }
         }
     },
@@ -1905,6 +2055,53 @@
                     "seeker":1,
                     "knight":1,
                     "commander":1
+                }
+            }
+        },
+        "royal-warrior":{
+            "peerless-stonecleaver":{
+                "name":"Peerless Stonecleaver",
+                "description":"Deals severe physical Slash damage to one enemy. Adds one Turn Icon on a killing blow.",
+                "party-requirement":"Warrior, Thief, or Masked Dancer Lineages AND Warrior, Brawler, or Berserker Lineages",
+                "count":{
+                    "warrior":1,
+                    "thief":1,
+                    "masked-dancer":1
+                },
+                "count-2":{
+                    "warrior":1,
+                    "brawler":1,
+                    "berserker":1
+                }
+            },
+            "vorpal-blade":{
+                "name":"Vorpal Blade",
+                "description":"Deals extreme physical Slash damage to all enemies. Decreases their Attack for 3 turns.",
+                "party-requirement":"Gunner, Faker, or Summoner Lineages",
+                "count":{
+                    "gunner":1,
+                    "faker":1,
+                    "summoner":1
+                }
+            },
+            "phantom-swordsarm":{
+                "name":"Phantom Swordsarm",
+                "description":"Deals medium physical Slash damage 4-6 times to one enemy. If it's a killing blow, adds one Turn Icon.",
+                "party-requirement":"Brawler, Merchant, or Summoner Lineages",
+                "count":{
+                    "brawler":1,
+                    "merchant":1,
+                    "summoner":1
+                }
+            },
+            "crimson-moon-sword-art":{
+                "name":"Crimson Moon Sword Art",
+                "description":"Deals severe physical Slash damage to all enemies. May inflict Charm.",
+                "party-requirement":"Warrior, Brawler, or Berserker Lineages",
+                "count":{
+                    "warrior":1,
+                    "brawler":1,
+                    "berserker":1
                 }
             }
         }

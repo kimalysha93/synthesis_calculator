@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			// Placeholder option
 			const placeholder = document.createElement('option');
 			placeholder.value = '';
-			placeholder.textContent = lineageValue ? '---' : '-- choose lineage first --';
+			placeholder.textContent = lineageValue ? '-' : '-- choose lineage first --';
 			archetypeSelect.appendChild(placeholder);
 
 			const list = archetypeMap[lineageValue];
