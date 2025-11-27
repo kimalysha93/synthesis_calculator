@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				header.className = 'result-header';
 				if (r.lineage) {
 					const lineageText = formatLineage(r.lineage);
-					const archeText = r.archetype ? formatArchetype(r.archetype) : '';
+					const archeText = r.archetype ? (" - " + formatArchetype(r.archetype)) : '';
 					header.innerHTML = `<strong> ${escapeHtml(lineageText).toUpperCase()}</strong> ${escapeHtml(archeText)}`;
 				} else {
 					header.innerHTML = `No selection`;
