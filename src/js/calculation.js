@@ -17,7 +17,7 @@ export class calculateSynthesis {
     }
 
     calculateSynthesis(){
-        // need to clone or else we modify the original counts
+        // need to clone or else it modifies the original counts
         const localLineageCount = structuredClone(this.lineageCount);
         localLineageCount[this.lineage] -= 1;
         //console.log('Adjusted lineage counts:', this.lineageCount);
@@ -28,28 +28,35 @@ export class calculateSynthesis {
         //console.log('Possible skills for', this.lineage, this.archetype, possibleSkills);
 
         const synthesizedSkills = [];
+        
+        // Helper function to check if skill is already added
+        const skillExists = (skillToCheck) => {
+            return synthesizedSkills.some(skill => skill.name === skillToCheck.name);
+        };
+
         // Checking each skill in archetype
         for (const skillKey in possibleSkills) {
             const skill = possibleSkills[skillKey];
             const requirements = skill['count'];
             if (skillKey == "armaggedons-final-sire"){
-                if (this.royalCount >= 3) {
-                    synthesizedSkills.push(skills[this.lineage][this.archetype][skillKey]);
-                }
+                if (this.royalCount >= 3) synthesizedSkills.push(skills[this.lineage][this.archetype][skillKey]);
             } else if (skill['count-2']) {
                 // skill has two sets of requirements
                 const requirements2 = skill['count-2'];
                 for (const reqLineage in requirements) {
                     // if first set of requirements met
                     if (localLineageCount[reqLineage] >= requirements[reqLineage]) {
-                        // remove requirement from cloned local lineage count and scheck second set of requirements
+                        // remove requirement from cloned local lineage count and check second set of requirements
                         let tempLineageCount = structuredClone(localLineageCount);
                         tempLineageCount[reqLineage] -= requirements[reqLineage];
                         let metSecondRequirements = false;
                         for (const reqLineage2 in requirements2) {
                             if (tempLineageCount[reqLineage2] >= requirements2[reqLineage2]) {
                                 // console.log(`Skill ${skillKey} can be synthesized.`);
-                                synthesizedSkills.push(skills[this.lineage][this.archetype][skillKey]);
+                                const skillToAdd = skills[this.lineage][this.archetype][skillKey];
+                                if (!skillExists(skillToAdd)) {
+                                    synthesizedSkills.push(skillToAdd);
+                                }
                                 metSecondRequirements = true;
                                 break;
                             }
@@ -63,7 +70,13 @@ export class calculateSynthesis {
                 for (const reqLineage in requirements) {
                     if (localLineageCount[reqLineage] >= requirements[reqLineage]) {
                         // console.log(`Skill ${skillKey} can be synthesized.`);
-                        synthesizedSkills.push(skills[this.lineage][this.archetype][skillKey]);
+                        // console.log(synthesizedSkills);
+                        // console.log(skillKey);
+                        const skillToAdd = skills[this.lineage][this.archetype][skillKey];
+                        if (!skillExists(skillToAdd)) {
+                            synthesizedSkills.push(skillToAdd);
+                        }
+                        break; // Only add once per skill
                     }
                 }
             }
